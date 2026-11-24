@@ -14,7 +14,18 @@
             <div class="navbar-nav">
                 <a class="nav-link" href="/">Beranda</a>
                 <a class="nav-link" href="/halo">Halo</a>
+                <a class="nav-link" href="{{ route('catatan.index') }}">Catatan</a>
                 <a class="nav-link" href="/about">Tentang</a>
+                @auth
+                    <span class="navbar-text text-light">{{ auth()->user()->name }}</span>
+                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                        @csrf
+                        <button type="submit" class="nav-link btn btn-link">Keluar</button>
+                    </form>
+                @else
+                    <a class="nav-link" href="{{ route('login') }}">Masuk</a>
+                    <a class="nav-link" href="{{ route('register') }}">Daftar</a>
+                @endauth
             </div>
         </div>
     </nav>
